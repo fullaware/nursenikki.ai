@@ -1,0 +1,689 @@
+/* ==========================================
+   CSS Custom Properties - Theme Variables
+   ========================================== */
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1f2937;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.3);
+    --border-color: #1f2937;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --disclaimer-bg: transparent;
+    --disclaimer-border: transparent;
+    --disclaimer-hover-bg: rgba(255, 255, 255, 0.03);
+    --chip-bg: #111827;
+    --chip-hover: #1f2937;
+    --toggle-bg: #1f2937;
+    --toggle-active: #3b82f6;
+    --cursor-color: #3b82f6;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-glow: rgba(37, 99, 235, 0.2);
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --disclaimer-bg: transparent;
+    --disclaimer-border: transparent;
+    --disclaimer-hover-bg: rgba(0, 0, 0, 0.03);
+    --chip-bg: #f1f5f9;
+    --chip-hover: #e2e8f0;
+    --toggle-bg: #e2e8f0;
+    --toggle-active: #2563eb;
+    --cursor-color: #2563eb;
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 1rem;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   Theme Toggle Button
+   ========================================== */
+
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    background: var(--toggle-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    background: var(--toggle-active);
+    color: white;
+    transform: scale(1.1);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.theme-icon {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+/* Show sun in dark mode, moon in light mode */
+[data-theme="dark"] .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+[data-theme="dark"] .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+[data-theme="light"] .sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+[data-theme="light"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* ==========================================
+   Main Container
+   ========================================== */
+
+.main-container {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2rem 0;
+}
+
+/* ==========================================
+   Logo & Title
+   ========================================== */
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Theme-aware logo display */
+[data-theme="dark"] .logo-light {
+    display: none;
+}
+
+[data-theme="light"] .logo-dark {
+    display: none;
+}
+
+.site-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.site-tagline {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* ==========================================
+   Search Container
+   ========================================== */
+
+.search-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-form {
+    width: 100%;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 3rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    box-shadow: 0 4px 16px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.search-icon {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    margin-right: 0.75rem;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    padding: 0.75rem 0;
+    outline: none;
+    font-family: inherit;
+    z-index: 2;
+    position: relative;
+}
+
+/* Typewriter effect elements */
+.typewriter-text {
+    position: absolute;
+    left: calc(1.5rem + 24px + 0.75rem);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-tertiary);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: pre;
+}
+
+.typewriter-text.active {
+    opacity: 1;
+}
+
+.typewriter-cursor {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--cursor-color);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: none;
+}
+
+.typewriter-cursor.active {
+    opacity: 1;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Hide typewriter when input has focus or value */
+.search-input:focus ~ .typewriter-text,
+.search-input:focus ~ .typewriter-cursor,
+.search-input:not(:placeholder-shown) ~ .typewriter-text,
+.search-input:not(:placeholder-shown) ~ .typewriter-cursor {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+/* Hide native placeholder when typewriter is active */
+.typewriter-active .search-input::placeholder {
+    color: transparent;
+}
+
+.search-button {
+    flex-shrink: 0;
+    background: var(--accent);
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s ease;
+    margin-left: 0.5rem;
+}
+
+.search-button:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.search-button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   Sample Questions
+   ========================================== */
+
+.sample-questions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sample-label {
+    font-size: 1rem;
+    color: var(--text-tertiary);
+}
+
+.sample-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.sample-chip {
+    background: var(--chip-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.sample-chip:hover {
+    background: var(--chip-hover);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.sample-chip:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.sample-chip:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   Disclaimer
+   ========================================== */
+
+.disclaimer-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.disclaimer-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-align: center;
+}
+
+.disclaimer-toggle:hover {
+    background: var(--disclaimer-hover-bg);
+    color: var(--text-secondary);
+}
+
+.disclaimer-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.disclaimer-icon {
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.disclaimer-text {
+    font-weight: 400;
+}
+
+.disclaimer-arrow {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--text-tertiary);
+    opacity: 0.6;
+}
+
+.disclaimer-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.disclaimer-toggle[aria-expanded="true"] .disclaimer-arrow {
+    transform: rotate(180deg);
+}
+
+.disclaimer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background: transparent;
+    border: none;
+}
+
+.disclaimer-content[aria-hidden="false"] {
+    max-height: 600px;
+    padding: 0.5rem 1rem 1rem;
+}
+
+.disclaimer-content p {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    line-height: 1.65;
+    margin-bottom: 0.65rem;
+    text-align: center;
+}
+
+.disclaimer-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+
+.footer {
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* ==========================================
+   Responsive Design - Tablet
+   ========================================== */
+
+@media (max-width: 768px) {
+    html {
+        font-size: 17px;
+    }
+
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+    }
+
+    .main-container {
+        gap: 2rem;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .site-tagline {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========================================
+   Responsive Design - Mobile
+   ========================================== */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        padding: 0.75rem;
+        justify-content: flex-start;
+        padding-top: 4rem;
+    }
+
+    .theme-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    .theme-toggle svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-container {
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .site-title {
+        font-size: 1.75rem;
+    }
+
+    .site-tagline {
+        font-size: 1rem;
+    }
+
+    .search-input-wrapper {
+        padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+        border-radius: 2rem;
+    }
+
+    .search-input {
+        font-size: 1.1rem;
+        padding: 0.6rem 0;
+    }
+
+    .typewriter-text {
+        font-size: 1.1rem;
+        left: calc(1.25rem + 24px + 0.75rem);
+    }
+
+    .typewriter-cursor {
+        font-size: 1.1rem;
+        left: calc(1.25rem + 24px + 0.75rem);
+    }
+
+    .search-button {
+        width: 46px;
+        height: 46px;
+    }
+
+    .search-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sample-chips {
+        gap: 0.5rem;
+    }
+
+    .sample-chip {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .disclaimer-toggle {
+        padding: 0.85rem 1rem;
+        font-size: 1rem;
+    }
+
+    .disclaimer-content[aria-hidden="false"] {
+        padding: 1rem;
+    }
+
+    .disclaimer-content p {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.85rem;
+        padding: 1.5rem 0.75rem;
+    }
+}
+
+/* ==========================================
+   Reduced Motion Preference
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ==========================================
+   High Contrast Mode
+   ========================================== */
+
+@media (prefers-contrast: high) {
+    [data-theme="dark"] {
+        --border-color: #64748b;
+        --text-secondary: #cbd5e1;
+    }
+
+    [data-theme="light"] {
+        --border-color: #94a3b8;
+        --text-secondary: #334155;
+    }
+
+    .search-input-wrapper {
+        border-width: 3px;
+    }
+
+    .sample-chip {
+        border-width: 2px;
+    }
+}
+
+/* ==========================================
+   Print Styles
+   ========================================== */
+
+@media print {
+    .theme-toggle,
+    .search-button,
+    .sample-questions,
+    .typewriter-text,
+    .typewriter-cursor {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .disclaimer-content {
+        max-height: none !important;
+        padding: 1rem !important;
+    }
+}

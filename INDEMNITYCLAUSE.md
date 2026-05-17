@@ -1,0 +1,3 @@
+This tool does not provide medical advice.
+
+This tool uses AI-generated responses based on NurseNikki.AI content that has been reviewed by medical professionals. AI-generated responses can include inaccuracies. This tool is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on NurseNikki.AI. If you think you may have a medical emergency, call your doctor or 911 immediately. Reliance on any information provided by NurseNikki.AI is solely at your own risk.

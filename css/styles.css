@@ -248,59 +248,53 @@ body {
     position: relative;
 }
 
-/* Typewriter effect elements */
-.typewriter-text {
-    position: absolute;
-    left: calc(1.5rem + 24px + 0.75rem);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: var(--text-tertiary);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+/* ==========================================
+   Chat Window
+   ========================================== */
+
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.chat-message {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    box-shadow: 0 2px 12px var(--shadow-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-height: 3.5rem;
+}
+
+.chat-prefix {
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.chat-greeting {
+    color: var(--text-primary);
+}
+
+.chat-cursor {
+    color: var(--cursor-color);
+    animation: blink 1s step-end infinite;
     white-space: pre;
 }
 
-.typewriter-text.active {
-    opacity: 1;
-}
-
-.typewriter-cursor {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: var(--cursor-color);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
+.chat-cursor.done {
     animation: none;
-}
-
-.typewriter-cursor.active {
-    opacity: 1;
-    animation: blink 1s step-end infinite;
+    opacity: 0;
 }
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-}
-
-/* Hide typewriter when input has focus or value */
-.search-input:focus ~ .typewriter-text,
-.search-input:focus ~ .typewriter-cursor,
-.search-input:not(:placeholder-shown) ~ .typewriter-text,
-.search-input:not(:placeholder-shown) ~ .typewriter-cursor {
-    opacity: 0 !important;
-    animation: none !important;
-}
-
-/* Hide native placeholder when typewriter is active */
-.typewriter-active .search-input::placeholder {
-    color: transparent;
 }
 
 .search-button {
